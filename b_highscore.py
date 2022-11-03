@@ -5,11 +5,7 @@ title: high score tracker
 author: kliment lo
 date: november 1, 2022
 '''
-
-
-# --- VARIABLES --- #
-FILENAME = "b_score.txt"
-
+FILENAME = "c_highscore_rockpaperscissors"
 
 # --- INPUTS --- #
 def menu():
@@ -85,8 +81,10 @@ def readFile(FILE_OBJ):
     :return: (list)
     '''
     TEXT = FILE_OBJ.read()
+    print(f" Text = what's on file: {TEXT}")
     FILE_OBJ.close()
     SCORE_ARRAY = TEXT.split(",")
+    print(f"Text gets split: {SCORE_ARRAY} (makes it a list now)")
     return SCORE_ARRAY
 
 def checkNewScore(SCORE, SCORE_ARRAY):
@@ -152,6 +150,7 @@ def writeFile(SCORE_ARRAY):
 
 
 if __name__ == "__main__":
+    FILENAME = "b_score.txt"
     FILE = getFileRead()
     SCORES = readFile(FILE)
     while True:

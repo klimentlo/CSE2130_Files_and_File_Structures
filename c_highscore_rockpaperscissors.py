@@ -6,7 +6,7 @@ author: kliment lo
 date: november 2
 '''
 from b_highscore import getFileRead, getScore, getName, readFile, viewScores, checkNewScore, updateHighScore, writeFile
-FILENAME = "c_highscore_rockpaperscissors.txt"
+
 
 from random import randrange
 # --- INPUTS --- #
@@ -112,6 +112,7 @@ def displayWinner(WINNER):
 
 # --- MAIN PROGRAM --- #
 if __name__ == "__main__":
+    FILENAME = "c_highscore_rockpaperscissors.txt"
     SCORE = 0
     FILE = getFileRead()
     SCORES = readFile(FILE)
