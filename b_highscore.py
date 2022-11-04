@@ -94,10 +94,13 @@ def checkNewScore(SCORE, SCORE_ARRAY):
     :param SCORE_ARRAY: (list)
     :return: (bool)
     '''
+
     SCORE_ARRAY_2D = []
     # Creates a 2d ARRAY with the scores set as integers
+    print(SCORE_ARRAY)
     for i in range(len(SCORE_ARRAY)):
         SCORE_ARRAY_2D.append(SCORE_ARRAY[i].split())
+        print(SCORE_ARRAY_2D)
         SCORE_ARRAY_2D[-1][1] = int(SCORE_ARRAY_2D[-1][1])
 
     for i in range(len(SCORE_ARRAY_2D)):

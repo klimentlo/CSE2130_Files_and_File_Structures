@@ -56,6 +56,31 @@ def getFileRead():
     return FILE # returns the file itself
 
 
+def createSubject():
+    '''
+    get the user's subject
+    :return: (str)
+    '''
+    SUBJECT = input("What subject would you like to add? ")
+    return SUBJECT
+
+def getGrade():
+    '''
+    gets the user's grade
+    :return:
+    '''
+    GRADE = input("Grade: ")
+    try:
+        GRADE = float(GRADE)
+        if GRADE > 0 and GRADE < 101:
+            return GRADE
+        else:
+            print("Your grade can't be a negative or above 100! ")
+            return getGrade()
+
+    except:
+        print("Please input a number! ")
+        return getGrade()
 
 # --- PROCESSING --- #
 def readFile(FILE_OBJ):
@@ -64,12 +89,29 @@ def readFile(FILE_OBJ):
     :param FILE_OBJ: (obj)
     :return: (list)
     '''
-    TEXT = FILE_OBJ.read() # Text = the contents on the file
+    TEXT = FILE_OBJ.read() # Text = all the contents on the file
     print(f" Text = what's on file: {TEXT}") # uncomment this to understand, you dummy
     FILE_OBJ.close() # closes file
     SCORE_ARRAY = TEXT.split(",") # makes everything with a comma its own index in a list
-    print(f"Text gets split: {SCORE_ARRAY} (makes it a list now)")
+    #print(f"Text gets split: {SCORE_ARRAY} (makes it a list now)")
     return SCORE_ARRAY
+
+def combine(SUBJECT, GRADE):
+    '''
+    combins the two
+    :param SUBJECT:
+    :param GRADE:
+    :return:
+    '''
+    GRADES = []
+    try:
+        GRADE = int(GRADE)
+        GRADE = str(GRADE)
+    except:
+        GRADE = str(GRADE)
+    GRADES.append(SUBJECT)
+    GRADES.append(GRADE + " %")
+    GRADES = " ".join(GRADES)
 
 
 # --- OUTPUTS --- #
@@ -82,15 +124,25 @@ def viewGrades(GRADES):
     print("High Scores")
     for i in range(len(GRADES)): # if i is in the length of
         print(f"{i+1}. {GRADES[i]}") # prints it out nicely in a beautiful row
+    RETURN = input("""
+Enter any key to return to menu """)
 
 
 
 if __name__ == "__main__":
     FILE = getFileRead()
     GRADES = readFile(FILE)
+    print(GRADES)
     while True:
         CHOICE = menu()
         if CHOICE == 1:
             viewGrades(GRADES)
         if CHOICE == 2:
-            addSubject()
+            SUBJECT = createSubject()
+            GRADE = getGrade()
+            combine(SUBJECT, GRADE)
+
+        if CHOICE == 3:
+            pass
+        if CHOICE == 4:
+            pass
