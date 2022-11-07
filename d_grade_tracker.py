@@ -91,10 +91,10 @@ def readFile(FILE_OBJ):
     :return: (list)
     '''
     TEXT = FILE_OBJ.read() # Text = all the contents on the file
-    print(f" Text = what's on file: {TEXT}") # uncomment this to understand, you dummy
+    print(f" Text = what's on file: {TEXT} balls") # uncomment this to understand, you dummy
     FILE_OBJ.close() # closes file
     SCORE_ARRAY = TEXT.split(",") # makes everything with a comma its own index in a list
-    #print(f"Text gets split: {SCORE_ARRAY} (makes it a list now)")
+    print(f"Text gets split: {SCORE_ARRAY} (makes it a list now)")
     return SCORE_ARRAY
 
 def addSubject(SUBJECT, GRADE):
