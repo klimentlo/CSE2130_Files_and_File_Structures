@@ -42,7 +42,9 @@ def getFileRead():
         START_SCORE = []
         for i in range(10):
             START_SCORE.append("AAA 0")
+            print(START_SCORE)
         START_SCORE_TEXT = ",".join(START_SCORE)
+        print(START_SCORE_TEXT)
         FILE.write(START_SCORE_TEXT)
         FILE.close()
     except FileExistsError:
@@ -99,14 +101,14 @@ def checkNewScore(SCORE, SCORE_ARRAY):
     # Creates a 2d ARRAY with the scores set as integers
     print(SCORE_ARRAY)
     for i in range(len(SCORE_ARRAY)):
-        SCORE_ARRAY_2D.append(SCORE_ARRAY[i].split())
+        SCORE_ARRAY_2D.append(SCORE_ARRAY[i].split()) # splits the names and points in the array, so that now its [(AAA, 000), (AAA, 0), (AAA, 0)]
         print(SCORE_ARRAY_2D)
-        SCORE_ARRAY_2D[-1][1] = int(SCORE_ARRAY_2D[-1][1])
+        SCORE_ARRAY_2D[-1][1] = int(SCORE_ARRAY_2D[-1][1]) # MAKES the points into an integer, cause it's a string right now
 
     for i in range(len(SCORE_ARRAY_2D)):
-        if SCORE >= SCORE_ARRAY_2D[i][1]:
-            return True
-    return False
+        if SCORE >= SCORE_ARRAY_2D[i][1]: # checks each array to see if its larger than the points there
+            return True # if it is, returns true
+    return False #if not, return false
 
 def updateHighScore(SCORE, NAME, SCORE_ARRAY):
     '''
@@ -156,6 +158,7 @@ if __name__ == "__main__":
     FILENAME = "b_score.txt"
     FILE = getFileRead()
     SCORES = readFile(FILE)
+    print(SCORES)
     while True:
         CHOICE = menu()
         if CHOICE == 1:

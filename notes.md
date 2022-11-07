@@ -37,7 +37,7 @@ FILE.close()
 ```
 
 ### Reading contents of a text file
-A file that is open i n write mode cannot be read and vice versa. To open a file in read mode; use the following:
+A file that is open in write mode cannot be read and vice versa. To open a file in read mode; use the following:
 ```python
 FILE = open("filename.ext")
 TEXT = FILE.read()
@@ -65,7 +65,7 @@ FILE.write(TEXT)
 FILE.close()
 ```
 
-###Deleting a File
+### Deleting a File
 To delete content within a file, overwrite the content with a blank string
 ```python
 FILE = open("filename.ext", "w")

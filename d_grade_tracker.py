@@ -22,6 +22,7 @@ def menu():
 3. Update Subject
 4. Delete Subject
 5. Calculate average
+6. Exit
 
     """)
     CHOICE = input("> ")
@@ -30,7 +31,7 @@ def menu():
     else:
         print("Please enter a number! ")
         return menu()
-    if CHOICE > 0 and CHOICE < 6:
+    if CHOICE > 0 and CHOICE < 7:
         return CHOICE
     else:
         print("Please enter a number from the menu! ")
@@ -96,22 +97,43 @@ def readFile(FILE_OBJ):
     #print(f"Text gets split: {SCORE_ARRAY} (makes it a list now)")
     return SCORE_ARRAY
 
-def combine(SUBJECT, GRADE):
+def addSubject(SUBJECT, GRADE):
     '''
     combins the two
     :param SUBJECT:
     :param GRADE:
     :return:
     '''
+    global FILENAME
     GRADES = []
+    print(GRADE)
     try:
         GRADE = int(GRADE)
         GRADE = str(GRADE)
     except:
         GRADE = str(GRADE)
+    print(GRADE)
     GRADES.append(SUBJECT)
-    GRADES.append(GRADE + " %")
-    GRADES = " ".join(GRADES)
+    GRADES.append(GRADE)
+    GRADE = " ".join(GRADES)
+    FILE = open(FILENAME, "a")
+    FILE.write(GRADE)
+    FILE.close()
+
+
+def checkSubject(GRADES, SUBJECT):
+    '''
+    checks if the subject exists
+    :param SUBJECT:
+    :return:
+    '''
+    SUBJECT_2DARRAY = []
+    for i in range(len(GRADES)):
+        SUBJECT_2DARRAY.append(GRADES[i].split())
+        if SUBJECT == SUBJECT_2DARRAY[i][0]:
+            print("This subject already exists! ")
+            return False
+    return True
 
 
 # --- OUTPUTS --- #
@@ -139,10 +161,17 @@ if __name__ == "__main__":
             viewGrades(GRADES)
         if CHOICE == 2:
             SUBJECT = createSubject()
-            GRADE = getGrade()
-            combine(SUBJECT, GRADE)
-
+            if checkSubject(GRADES, SUBJECT):
+                GRADE = getGrade()
+                addSubject(SUBJECT, GRADE)
+                print("omg you can make it")
+            else:
+                print("nope it doesnt work")
         if CHOICE == 3:
             pass
         if CHOICE == 4:
             pass
+        if CHOICE == 5:
+            pass
+        if CHOICE == 6:
+            exit()
