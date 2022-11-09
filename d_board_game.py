@@ -71,9 +71,6 @@ def fillData(DATA):
             DATA[i].pop(-1)
         while len(DATA[i]) < 5:
             DATA[i].append("N/A ")
-        print(len(DATA[i]))
-
-
 
 
 def normalizeData(DATA):
@@ -84,9 +81,16 @@ def normalizeData(DATA):
         DATA (list)
     """
     print("Your collection values need to be normalized")
-    for i in range(len(DATA)-1):
+    # [[
+    for i in range(len(DATA)-1): # runs 29 times
+        for j in range(1):
+            DATA[i][j] = DATA[i][j].split()
+            print(DATA[i])
+            for k in range(len(DATA[i][j])):
+                DATA[i][j][k] = DATA[i][j][k].lower()
+                DATA[i][j][k] = DATA[i][j][k].capitalize()
+                print(DATA[i][j])
         try:
-            DATA[i+1][0] = str(DATA[i+1][0]).lower().capitalize()
             DATA[i+1][1] = str(DATA[i+1][1])
             DATA[i+1][2] = float(DATA[i+1][2])
             DATA[i+1][3] = int(DATA[i+1][3])
@@ -94,7 +98,6 @@ def normalizeData(DATA):
         except ValueError:
             pass
     print(DATA)
-
     return DATA
 
 

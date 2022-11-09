@@ -82,7 +82,7 @@ def getFileContent(FILE):
             ROWS[i] = ROWS [i][:-1] # everything except for the last letter (which is \n) (cleans it up)
         # ["Math 87"], ["Science 43"] ["CompSci 92"]
         ROWS [i] = ROWS[i].split() # splits it, so its
-        # [Math, 87], [Science, 43], [CompSci, 92]
+        # [[Math, 87], [Science, 43], [CompSci, 92]]
         ROWS[i][1] = float(ROWS[i][1]) # makes it a float
     FILE.close() # closes the file
     return ROWS
