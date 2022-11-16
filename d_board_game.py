@@ -48,7 +48,6 @@ def readFile():
         DATA = FILE.readlines()
         FILE.close()
 
-
     DATA_2D = []
     for i in range(len(DATA)):
         DATA_2D.append(DATA[i].split(","))
@@ -71,6 +70,9 @@ def fillData(DATA):
             DATA[i].pop(-1)
         while len(DATA[i]) < 5:
             DATA[i].append("N/A ")
+        for j in range(len(DATA[i])):
+            if DATA[i][j] == "" or DATA[i][j] == "---":
+                DATA[i][j] = "N/A "
 
 
 def normalizeData(DATA):
@@ -83,13 +85,8 @@ def normalizeData(DATA):
     print("Your collection values need to be normalized")
     # [[
     for i in range(len(DATA)-1): # runs 29 times
-        for j in range(1):
-            DATA[i][j] = DATA[i][j].split()
-            print(DATA[i])
-            for k in range(len(DATA[i][j])):
-                DATA[i][j][k] = DATA[i][j][k].lower()
-                DATA[i][j][k] = DATA[i][j][k].capitalize()
-                print(DATA[i][j])
+        DATA[i+1][0] = DATA[i+1][0].lower()
+        DATA[i+1][0] = DATA[i+1][0].title()
         try:
             DATA[i+1][1] = str(DATA[i+1][1])
             DATA[i+1][2] = float(DATA[i+1][2])
@@ -108,11 +105,11 @@ def addGame(DATA):
         DATA (list)
     """
     print("This function is under construction")
-    GAME = input("Board game: ")
-    DESCRIPTION = input("Description: ")
-    DIFFICULTY = input("Difficulty: ")
-    PLAYERS = input("Number of players: ")
-    TIME = input("Time required to complete: ")
+    GAME = str(input("Board game: "))
+    DESCRIPTION = str(input("Description: "))
+    DIFFICULTY = str(input("Difficulty: "))
+    PLAYERS = str(input("Number of players: "))
+    TIME = str(input("Time required to complete: "))
     DATA.append([GAME, DESCRIPTION, DIFFICULTY, PLAYERS, TIME])
     print(DATA)
 def removeGame(DATA):
@@ -121,8 +118,17 @@ def removeGame(DATA):
     Args:
         DATA (list)
     """
+    LENG = len(DATA)
     print("This function is under construction")
-
+    REMOVE = input("Which game would you like to remove? ").lower().title()
+    for i in range(len(DATA)):
+        if REMOVE == DATA[i][0]:
+            DATA.pop(i)
+            print("it exists!")
+    NEW_LENG = len(DATA)
+    if NEW_LENG == LENG: # checks if something got popped off or not
+        print("That game is not on the list! ")
+        removeGame(DATA)
 
 def getPlayers(DATA):
     """Tells you how many games of a certain player count are within the collection
@@ -188,8 +194,8 @@ def viewData(DATA):
     for i in range(len(DATA)):
         for j in range(len(DATA[i])):
             if DATA[i][j] != str(DATA[i][j]):
-                str(DATA[i][j])
-        TEXT = ",".join(DATA[i])
+                DATA[i][j] = str(DATA[i][j])
+        TEXT = ", ".join(DATA[i])
         print(TEXT)
 
 
@@ -215,7 +221,6 @@ if __name__ == "__main__":
     fillData(DATA)
     normalizeData(DATA)
     intro()
-
     while True:
         CHOICE = menu()
         if CHOICE == 1:  # View Collection
