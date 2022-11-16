@@ -77,3 +77,50 @@ To delete a file, python requires access to the operating system to ensure appro
 import os
 os.remove("filename.ext")
 ```
+
+## Comma Separated Values, CSV Files
+A CSV File is a plain text file that uses commas to delimit its data entries. It is a standardized format making it compatible with many different programs like text editor and spreadsheets. We can use CSV files in python by importing the csv library with ```import csv```
+
+The fist line of a csv file often contains the header, or titles the associated columns.
+
+```
+First Name, Last Name, Email   # header row ith our column titles
+Brian, Hager, Brian.Hager@epsb.ca     #Data inside the CSV
+Michael, Zhang, Michael.Zhang@epsb.ca
+```
+### Reading a CSV 
+To read the content from a csv file you need to use csv.reader(). This is an iterable object, which means we can get through it using a for loop.
+
+```python
+import csv
+
+FILE = open("example.csv", newline="")
+READER = csv.reader(FILE)
+for row in READER:
+    print(row)
+FILE.close()
+```
+NOTE: The newline="" parameter is important in making sure the formatting of line breaks in the csv file are correct. This parameter can be changed to have different characters stand in for new lines, but for our purposes we can just include the line as is
+
+### Writing to a CSV File
+To write to a CS File we need to use csv.writer(). There are two methods we can use to write to our file, writerow() will write a single line to the file. While writerows() can do any number of lines at once.
+
+```python
+import csv
+FILE = open("examples.csv", "w", newline="")
+WRITER = csv.writer(FILE)
+WRITER.writerow(HEADER) # Writes the header line with our column titles
+WRITER.writerows(DATA) # Writes the rest of our data all at once
+FILE.close()
+```
+
+### Useful Functions
+####.seek()
+Python and other programming languages treat file objects similarly. It is easiest to image them reading through the file lik we do on the computer, with a cursor keeping track of where they are currently are. Normally we read through the entire file at once, but it is possible to read a sing line at a time using the ```nextline()()``` function.
+
+IF you want to move the cursor to a specific location in the file you can use the ```.seek()``` method. .seek() takes up to 2 parameters, seek(offset, from_what)
+From_what tells us our reference point.
+0: The beginning of the file. If no from_what is specified it is assumed to be 0
+1: The current file position
+2: The end of the file
+Offset tells the cursor how far from the reference to go
