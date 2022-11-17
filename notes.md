@@ -103,7 +103,7 @@ FILE.close()
 NOTE: The newline="" parameter is important in making sure the formatting of line breaks in the csv file are correct. This parameter can be changed to have different characters stand in for new lines, but for our purposes we can just include the line as is
 
 ### Writing to a CSV File
-To write to a CS File we need to use csv.writer(). There are two methods we can use to write to our file, writerow() will write a single line to the file. While writerows() can do any number of lines at once.
+To write to a csv File we need to use csv.writer(). There are two methods we can use to write to our file, writerow() will write a single line to the file. While writerows() can do any number of lines at once.
 
 ```python
 import csv
