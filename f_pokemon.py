@@ -36,17 +36,17 @@ def getPokemon(POKEMONS, pokemon):
     print("It does not exist! ")
     getPokemon(POKEMONS, pokemon)
 
-
+def getMultiplier(ATTRIBUTEA, ATTRIBUTEB):
+    print(ATTRIBUTEA)
+    print(ATTRIBUTEB)
 
 if __name__ == "__main__":
     POKEMONLIST = readCSV(1)
     ATTRIBUTES = readCSV(2)
-    print(POKEMONLIST)
     for i in range(len(ATTRIBUTES)):
         print(ATTRIBUTES[i])
     ATTACKER = getPokemon(POKEMONLIST, "Attacking")
     DEFENDER = getPokemon(POKEMONLIST, "Defending")
-
-    ATTRIBUTESA = ATTACKER[2:4]
-    ATTRIBUTESD = DEFENDER[2:4]
-    print(ATTRIBUTESA)
+    ATTRIBUTEA = ATTACKER[2:4]
+    ATTRIBUTEB = DEFENDER[2:4]
+    getMultiplier(ATTRIBUTEA, ATTRIBUTEB)
