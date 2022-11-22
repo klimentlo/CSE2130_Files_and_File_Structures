@@ -90,6 +90,7 @@ def displayDamageModifier(VALUE):
     :param VALUE: (int)(multiplier)
     :return: (none)
     '''
+    print(f"VALUE: {VALUE}")
     if VALUE == 1:
         print("Types do not affect damage")
     if VALUE == 0:
@@ -122,6 +123,8 @@ if __name__ == "__main__":
 
         ATTACKING_TYPES = getPokemonTypes(ATTACKING)
         DEFENDING_TYPES = getPokemonTypes(DEFENDING)
+        print(ATTACKING_TYPES)
+        print(DEFENDING_TYPES)
 
         DAMAGE_MULTIPLIER = getDamageMultiplier(ATTACKING_TYPES, DEFENDING_TYPES)
 
