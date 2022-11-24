@@ -15,21 +15,22 @@ def menu():
     its the menu
     :return:
     '''
-    try:
-        option = int(input("""Please choose an option: 
+    option = input("""Please choose an option: 
 1. Search Population Growth 
 2. Add new year data    
 3. Exit
 
-> """))
+> """)
+    if option.isnumeric():
+        option = int(option)
         if option > 0 and option < 4:
-            return int(option)
+            return option
         else:
             print("That is not one of the options! ")
-            menu()
-    except:
+            return menu()
+    else:
         print("That is not a number! ")
-        menu()
+        return menu()
 
 
 def readCSV(FILE):
@@ -56,12 +57,64 @@ def sortData(ANIMAL):
     usedData = []
     returnData = []
     for i in range(len(dataContent)):
-        usedData.append([dataContent[i][5],dataContent[i][1], dataContent[i][14]])
+        usedData.append([dataContent[i][5],dataContent[i][1], dataContent[i][16]])
 
     for i in range(len(dataContent)):
         if usedData[i][0] == ANIMAL:
             returnData.append(usedData[i])
     return returnData
+
+def getStartYear():
+    '''
+
+    :param NUMBER: (str)
+    :return:
+    '''
+    global dataContent
+    year = input("Start year? ")
+    if year.isnumeric():
+        for i in range(len(dataContent)):
+            if year == dataContent[i][1]:
+                return year
+    print("That year is not valid! ")
+    return getStartYear()
+def getEndYear(STARTYEAR):
+    '''
+
+    :param NUMBER: (str)
+    :return:
+    '''
+    global dataContent
+    year = input("End year? ")
+    if year.isnumeric():
+        for i in range(len(dataContent)):
+            if year == dataContent[i][1]:
+                if year >= STARTYEAR:
+                    return year
+                else:
+                    print("That is not a valid year! ")
+                    return getEndYear(STARTYEAR)
+    print("That is not a valid year!")
+    return getEndYear(STARTYEAR)
+
+def getAnimal():
+    '''
+    gets what animal they want
+    :return:
+    '''
+    animal = input("""
+Animal?
+Bison (1), Elk(2), Moose(3), Deer(4), or All(5)? """)
+    try:
+        animal = int(animal)
+        if animal > 0 and animal < 6:
+            return animal
+        else:
+            print("That is not one of the options")
+            return getAnimal()
+    except:
+        print("That is not one of the options")
+        return getAnimal()
 
 # --- PROCESSING --- #
 
@@ -74,14 +127,30 @@ def calculateAverage(STARTYEAR, ENDYEAR, ANIMAL):
     :return:
     '''
     global bisonData, elkData, mooseData, deerData
+
     if ANIMAL == 1:
         print(bisonData)
+        calculateData = bisonData
     elif ANIMAL == 2:
         print(elkData)
+        calculateData = elkData
     elif ANIMAL == 3:
         print(mooseData)
+        calculateData = mooseData
     elif ANIMAL == 4:
         print(deerData)
+        calculateData = deerData
+
+    usedData = []
+    for i in range(len(calculateData)):
+        if calculateData[i][1] == STARTYEAR or calculateData[i][1] == ENDYEAR:
+            usedData.append([calculateData[i][1],calculateData[i][2]])
+
+    print(usedData)
+
+
+
+
 
 # --- OUTPUTS --- #
 def intro():
@@ -108,9 +177,9 @@ if __name__ == "__main__":
     while True:
         choice = menu()
         if choice == 1:
-            startYear = input("Start year? ")
-            endYear = input("End year? ")
-            animal = int(input("Bison (1), Elk(2), Moose(3), Deer(4), or All(5)? "))
+            startYear = getStartYear()
+            endYear = getEndYear(startYear)
+            animal = getAnimal()
             calculateAverage(startYear, endYear, animal)
         elif choice == 2:
             pass
