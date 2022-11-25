@@ -47,10 +47,10 @@ def readCSV(FILE):
         TEXT_LIST[i] = TEXT_LIST[i].split(",")
     return TEXT_LIST
 
-def sortData(ANIMAL):
+def sortData(animal ):
     '''
     sorts out the data based on the anima;
-    :param ANIMAL: (str)
+    :param animal : (str)
     :return: (2d array)
     '''
     global dataContent
@@ -60,7 +60,7 @@ def sortData(ANIMAL):
         usedData.append([dataContent[i][5],dataContent[i][1], dataContent[i][16]])
 
     for i in range(len(dataContent)):
-        if usedData[i][0] == ANIMAL:
+        if usedData[i][0] == animal :
             returnData.append(usedData[i])
     return returnData
 
@@ -78,6 +78,7 @@ def getStartYear():
                 return year
     print("That year is not valid! ")
     return getStartYear()
+
 def getEndYear(STARTYEAR):
     '''
 
@@ -97,13 +98,13 @@ def getEndYear(STARTYEAR):
     print("That is not a valid year!")
     return getEndYear(STARTYEAR)
 
-def getAnimal():
+def getanimal ():
     '''
     gets what animal they want
     :return:
     '''
     animal = input("""
-Animal?
+animal ?
 Bison (1), Elk(2), Moose(3), Deer(4), or All(5)? """)
     try:
         animal = int(animal)
@@ -111,42 +112,69 @@ Bison (1), Elk(2), Moose(3), Deer(4), or All(5)? """)
             return animal
         else:
             print("That is not one of the options")
-            return getAnimal()
+            return getanimal()
     except:
         print("That is not one of the options")
-        return getAnimal()
+        return getanimal()
 
 # --- PROCESSING --- #
 
-def calculateAverage(STARTYEAR, ENDYEAR, ANIMAL):
+def calculateGrowthRate(startYear, endYear, animal ):
     '''
     calculates the total growth rate of the animal
-    :param STARTYEAR: (int)
-    :param ENDYEAR: (int)
-    :param ANIMAL: (int)
+    :param STARTYEAR: (str)
+    :param ENDYEAR: (str)
+    :param animal : (int)
     :return:
     '''
-    global bisonData, elkData, mooseData, deerData
+    global bisonData, elkData, mooseData, deerData, dataContent
 
-    if ANIMAL == 1:
-        print(bisonData)
+    if animal == 1: #if bison was chosen, use bison data
+        animal = "Bison"
         calculateData = bisonData
-    elif ANIMAL == 2:
-        print(elkData)
+    elif animal == 2: #if elk was chosen, use bison data
+        panimal = "Elk"
         calculateData = elkData
-    elif ANIMAL == 3:
-        print(mooseData)
+    elif animal == 3: #if moose was chosen, use bison data
+        animal = "Moose"
         calculateData = mooseData
-    elif ANIMAL == 4:
-        print(deerData)
+    elif animal == 4: #if deer was chosen, use bison data
+        animal = "Deer"
         calculateData = deerData
+    elif animal == 5: # if all is chosen, use all animal s data
+        calculateData = dataContent
 
     usedData = []
     for i in range(len(calculateData)):
-        if calculateData[i][1] == STARTYEAR or calculateData[i][1] == ENDYEAR:
-            usedData.append([calculateData[i][1],calculateData[i][2]])
+        if calculateData[i][1] == startYear or calculateData[i][1] == endYear: # gets the population of the animal s that corespond with what year the user inputted
+            usedData.append([calculateData[i][1],calculateData[i][2]]) # appends it as a list to be used for calculating average
 
-    print(usedData)
+    averageEnd = 0
+    averageStart = 0
+    for i in range(len(usedData)):
+        if usedData[i][1] == "NA": # if the population is NA, make it a 0
+            usedData[i][1] = 0
+
+        if usedData[i][0] == endYear:
+            averageEnd = averageEnd + int(usedData[i][1]) # adds all the populations together
+
+        if usedData[i][0] == startYear:
+            averageStart = averageStart + int(usedData[i][1])  # adds all the populations together
+
+    startYear = int(startYear)  # makes it a integer so we can calculate with it
+    endYear = int(endYear)  # ^^
+
+    yearDifference = endYear - startYear
+    if yearDifference == 0:
+        yearDifference = 1
+
+    average = (averageEnd - averageStart) / (yearDifference)
+
+    print(f"""
+The growth rate of Bison between {startYear} and {endYear} is {average}{animal}/year""")
+
+
+
 
 
 
@@ -179,8 +207,8 @@ if __name__ == "__main__":
         if choice == 1:
             startYear = getStartYear()
             endYear = getEndYear(startYear)
-            animal = getAnimal()
-            calculateAverage(startYear, endYear, animal)
+            animal = getanimal ()
+            growthRate = calculateGrowthRate(startYear, endYear, animal)
         elif choice == 2:
             pass
         elif choice == 3:
