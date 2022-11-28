@@ -15,7 +15,8 @@ def menu():
     its the menu
     :return:
     '''
-    option = input("""Please choose an option: 
+    option = input("""
+Please choose an option: 
 1. Search Population Growth 
 2. Add new year data    
 3. Exit
@@ -47,7 +48,7 @@ def readCSV(FILE):
         TEXT_LIST[i] = TEXT_LIST[i].split(",")
     return TEXT_LIST
 
-def sortData(animal ):
+def sortData(animal):
     '''
     sorts out the data based on the anima;
     :param animal : (str)
@@ -57,10 +58,13 @@ def sortData(animal ):
     usedData = []
     returnData = []
     for i in range(len(dataContent)):
-        usedData.append([dataContent[i][5],dataContent[i][1], dataContent[i][16]])
+        usedData.append([dataContent[i][5],dataContent[i][1], dataContent[i][16]])# appends the animal, population year, and fall population estimate
 
+    if animal == "All":
+        for i in range(len(dataContent)):
+            returnData.append(usedData[i])
     for i in range(len(dataContent)):
-        if usedData[i][0] == animal :
+        if usedData[i][0] == animal : #
             returnData.append(usedData[i])
     return returnData
 
@@ -104,7 +108,6 @@ def getanimal ():
     :return:
     '''
     animal = input("""
-animal ?
 Bison (1), Elk(2), Moose(3), Deer(4), or All(5)? """)
     try:
         animal = int(animal)
@@ -127,13 +130,13 @@ def calculateGrowthRate(startYear, endYear, animal ):
     :param animal : (int)
     :return:
     '''
-    global bisonData, elkData, mooseData, deerData, dataContent
+    global bisonData, elkData, mooseData, deerData, allData
 
     if animal == 1: #if bison was chosen, use bison data
         animal = "Bison"
         calculateData = bisonData
     elif animal == 2: #if elk was chosen, use bison data
-        panimal = "Elk"
+        animal = "Elk"
         calculateData = elkData
     elif animal == 3: #if moose was chosen, use bison data
         animal = "Moose"
@@ -142,18 +145,17 @@ def calculateGrowthRate(startYear, endYear, animal ):
         animal = "Deer"
         calculateData = deerData
     elif animal == 5: # if all is chosen, use all animal s data
-        calculateData = dataContent
+        calculateData = allData
 
     usedData = []
     for i in range(len(calculateData)):
         if calculateData[i][1] == startYear or calculateData[i][1] == endYear: # gets the population of the animal s that corespond with what year the user inputted
             usedData.append([calculateData[i][1],calculateData[i][2]]) # appends it as a list to be used for calculating average
-
     averageEnd = 0
     averageStart = 0
     for i in range(len(usedData)):
         if usedData[i][1] == "NA": # if the population is NA, make it a 0
-            usedData[i][1] = 0
+            return print(f"There is insufficient data in year {usedData[i][0]}")
 
         if usedData[i][0] == endYear:
             averageEnd = averageEnd + int(usedData[i][1]) # adds all the populations together
@@ -169,9 +171,22 @@ def calculateGrowthRate(startYear, endYear, animal ):
         yearDifference = 1
 
     average = (averageEnd - averageStart) / (yearDifference)
+    try:
+        average = int(average)
+    except:
+        average = round(average, 2)
 
-    print(f"""
-The growth rate of Bison between {startYear} and {endYear} is {average}{animal}/year""")
+    if average > 0:
+        sign = "+"
+    else:
+        sign = ""
+
+    if animal == 5:
+        print(f"""
+The growth rate of all 5 species between {startYear} and {endYear} is {sign}{average}/year. """)
+    else:
+        print(f"""
+The growth rate of {animal} between {startYear} and {endYear} is {average} {sign}{animal}/year. """)
 
 
 
@@ -200,14 +215,14 @@ if __name__ == "__main__":
     elkData = sortData("Elk")
     mooseData = sortData("Moose")
     deerData = sortData("Deer")
-    #all
+    allData = sortData("All")
 
     while True:
         choice = menu()
         if choice == 1:
             startYear = getStartYear()
             endYear = getEndYear(startYear)
-            animal = getanimal ()
+            animal = getanimal()
             growthRate = calculateGrowthRate(startYear, endYear, animal)
         elif choice == 2:
             pass
