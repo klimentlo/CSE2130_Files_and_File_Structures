@@ -144,10 +144,13 @@ def calculateGrowthRate(startYear, endYear, animal ):
     elif animal == 4: #if deer was chosen, use bison data
         animal = "Deer"
         calculateData = deerData
-    elif animal == 5: # if all is chosen, use all animal s data
+    elif animal == 5: # if all is chosen, use all animals data
+        animal = ["Bison", "Elk", "Moose", "Deer"]
         calculateData = allData
 
+
     usedData = []
+
     for i in range(len(calculateData)):
         if calculateData[i][1] == startYear or calculateData[i][1] == endYear: # gets the population of the animal s that corespond with what year the user inputted
             usedData.append([calculateData[i][1],calculateData[i][2]]) # appends it as a list to be used for calculating average
@@ -162,11 +165,42 @@ def calculateGrowthRate(startYear, endYear, animal ):
 
         if usedData[i][0] == startYear:
             averageStart = averageStart + int(usedData[i][1])  # adds all the populations together
+    if animal == ["Bison", "Elk", "Moose", "Deer"]:
+        bisonStartAverage = 0
+        elkStartAverage = 0
+        mooseStartAverage = 0
+        deerStartAverage = 0
+        bisonEndAverage = 0
+        elkEndAverage = 0
+        mooseEndAverage = 0
+        deerEndAverage = 0
+
+        for i in range(len(calculateData)):
+            if calculateData[i][1] == startYear:
+                if calculateData[i][0] == "Bison":
+                    bisonStartAverage = bisonStartAverage + int(calculateData[i][2])
+                if calculateData[i][0] == "Elk":
+                    elkStartAverage = elkStartAverage + int(calculateData[i][2])
+                if calculateData[i][0] == "Moose":
+                    mooseStartAverage = mooseStartAverage + int(calculateData[i][2])
+                if calculateData[i][0] == "Deer":
+                    deerStartAverage = deerStartAverage + int(calculateData[i][2])
+
+            if calculateData[i][1] == endYear: # gets the population of the animal s that corespond with what year the user inputted
+                if calculateData[i][0] == "Bison":
+                    bisonEndAverage = bisonEndAverage + int(calculateData[i][2])
+                if calculateData[i][0] == "Elk":
+                    elkEndAverage = elkEndAverage + int(calculateData[i][2])
+                if calculateData[i][0] == "Moose":
+                    mooseEndAverage = mooseEndAverage + int(calculateData[i][2])
+                if calculateData[i][0] == "Deer":
+                    deerEndAverage = deerEndAverage + int(calculateData[i][2])
 
     startYear = int(startYear)  # makes it a integer so we can calculate with it
     endYear = int(endYear)  # ^^
 
     yearDifference = endYear - startYear
+
     if yearDifference == 0:
         yearDifference = 1
 
@@ -176,22 +210,20 @@ def calculateGrowthRate(startYear, endYear, animal ):
     except:
         average = round(average, 2)
 
-    if average > 0:
-        sign = "+"
+    if animal == ["Bison", "Elk", "Moose", "Deer"]:
+        averageAll = []
+        averageAll.append((bisonEndAverage - bisonStartAverage) / (yearDifference))
+        averageAll.append((elkEndAverage - elkStartAverage) / (yearDifference))
+        averageAll.append((mooseEndAverage - mooseStartAverage) / (yearDifference))
+        averageAll.append((deerEndAverage - deerStartAverage) / (yearDifference))
+
+        for i in range(len(animal)):
+            print(f"""The growth rate {animal[i]} between {startYear} and {endYear} is {averageAll[i]}/year. """)
+        print(f"""The total growth rate of all 4 species between {startYear} and {endYear} is {average}/year. """)
+
     else:
-        sign = ""
-
-    if animal == 5:
         print(f"""
-The growth rate of all 5 species between {startYear} and {endYear} is {sign}{average}/year. """)
-    else:
-        print(f"""
-The growth rate of {animal} between {startYear} and {endYear} is {average} {sign}{animal}/year. """)
-
-
-
-
-
+The growth rate of {animal} between {startYear} and {endYear} is {average} {animal}/year. """)
 
 
 
