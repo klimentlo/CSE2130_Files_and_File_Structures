@@ -47,12 +47,15 @@ def readFile():
         FILE = open(FILENAME)
         DATA = FILE.readlines()
         FILE.close()
-
+        print("hi")
+    print(DATA)
     DATA_2D = []
     for i in range(len(DATA)):
         DATA_2D.append(DATA[i].split(","))
+        print(DATA_2D[i][-1])
+        print(DATA_2D[i][-1][:-1])
         DATA_2D[i][-1] = DATA_2D[i][-1][:-1]  # removes the "\n" character from the end of the last entry of every line
-
+    print(DATA_2D)
     return DATA_2D
 
 

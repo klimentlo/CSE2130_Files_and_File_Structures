@@ -1,0 +1,120 @@
+Board Game,Description,Difficulty,Players,Time
+
+,---,---,---,---
+Champions Of Hara,Save the land of hara from a magical cataclysm,---,---,6
+
+
+,---,---,---,---
+Too Many Bones,Take a team of Gearlocs on an adventure to defeat a wicked tyrant,3.85,4,N/A
+
+
+,---,---,---,---
+Tidal Blades: Heroes Of The Reef,Compete against other hopeful heroes to gain the title of Tidal Blade!,2.89,4,90
+
+
+,---,---,---,---
+Broom Service,Play as brave and cowardly witches delivering potions throughout the country,2.41,5,75
+
+
+,---,---,---,---
+In The Hall Of The Mountain King,Lead a band of trolls to excavate their mountain home,2.82,5,90
+
+
+,---,---,---,---
+Call To Adventure,Take fate into your own hands by crafting the tale of your hero,2.01,4,60
+
+
+,---,---,---,---
+Quacks Of Quedlinburg,You are a quack potion seller trying to create the best potions in all the land,,4,45
+
+
+,---,---,---,---
+Vast: The Mysterious Manor,take on the roll of 1 of 5 characters trying to complete their goals inside the haunted mansion,3.74,5,N/A
+
+
+,---,---,---,---
+Root,Decide the fate of the forest as woodland factions fight for contrasting goals,Three point Seven Three,4,90
+
+
+,---,---,---,---
+Uprising: Curse Of The Last Emperor,Lead the uprising of a formerly enslaved fantasy race against the empire and chaos,3.69,4,240
+
+
+,---,---,---,---
+Bloodborne,---,2.94,4,75
+
+
+,---,---,---,---
+Ankh: Gods Of Egpyt,Take the role of Egyptian gods fighting to become the one true god,3.05,FIVE,90
+
+
+,---,---,---,---
+Roll Player,Draft dice and purchase skills and equipment to create your next RPG hero,2.41,4,90
+
+
+,---,---,---,---
+War Of Whispers,Manipulate empires from the shadows as you outwite and outmaneuver the competition,2.56,4,60
+
+
+,---,---,---,---
+Fog Of Lover,Two lovers try to navigate a relationship with different personalities,2.25,2,120
+
+
+,---,---,---,---
+Exceed,Fighters from all over jump into the ring to fight and predict their opponents moves,2.64,2,30
+
+
+,---,---,---,---
+Fort,Build the most awesome fort while making friends and eating pizza,2.43,4,40
+
+
+,---,---,---,---
+Cockroach Poker,Call each others bluffs about these ugly bugs in order to win,1.11,6,20
+
+
+,---,---,---,---
+Tragedy Looper,Relive the same week over and over again until your can thwart the masterminds plans and save the day,3.53,Four,120
+
+
+,---,---,---,---
+Arcadia Quest,Fight against rival guilds and monsters in a campaign to reclaim the city of arcadia,2.53,4,60
+
+
+,---,---,---,---
+Slap .45,Take control of your gang in the old west and slap your way to victory,1.33,7,20
+
+
+,---,---,---,---
+Sea Of Legends,Race to be the best pirate captain alongside your lover while fighting back against your nemesis and NPC factions,2.92,5,160
+
+
+,---,---,---,---
+Bargain Quest,Make the most money selling goods to aspiring heroes before they head off into battle,1.95,6,60
+
+
+,---,---,---,---
+Cryptid,---,2.22,5,50
+
+
+,---,---,---,---
+Townsfolk Tussle,Work together to save your town from the pesky ruffians after the sudden murder of the town sherrif,2.64,5,200
+
+
+,---,---,---,---
+Ex Libris,Become a librarian and put your books in alphabetical order in a fantasy world,2.54,4,45
+
+
+,---,---,---,---
+Trickerion,Magicians perform dazzling tricks for money and game,One of the most difficult games Mr. Hager owns,N/A ,N/A
+
+
+,---,---,---,---
+Bullet <3,Space heroines defend planet earth in falling-block battles,fghj,4,20
+
+
+,---,---,---,---
+Fireball Island: The Curse Of Vul-Kar,Grab some treasure and dodge fireballs before vul-kar destroys the island,1.5,4,6
+
+hi,hi,hi,hi,hi
+2,big balls man,4,3,90
+big,balls,big,balls,big

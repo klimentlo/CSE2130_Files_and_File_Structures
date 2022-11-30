@@ -47,12 +47,12 @@ print(TEXT)
 
 ### Reading Files Line-By-Line
 When preserving information in each row of a spreadsheet file, reading the file line by line ensures that the overall structure of the tables is maintained.
-```python
+```python                                                                                                                                                          
 FILE = open("filename.ext") # we don't need the extension thingy, cause we're just opening it to read it
 A_LIST = FILE.readlines()
 FILE.close()
 print(A_LIST)
-```
+```                                                                                                                                                                
 NOTE: Formatting characters such as \n will be visible in strings created from readlines(). Therefore, the data ofter requires clean-up of unanticipated characters. 
 
 ## Updating Files
