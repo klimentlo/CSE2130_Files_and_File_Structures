@@ -103,6 +103,7 @@ def writeGrades(FILE, GRADES):
         # ["Math 87", "Science 43", "CompSci 92"]
     TEXT = "\n".join(GRADES) # makes it one single string
     # "Math 87\nScience 43\nCompSci 92"
+    print(TEXT)
     FILE.write(TEXT) # replaces the entire file with this newly made version
     FILE.close() # closes the file
 
