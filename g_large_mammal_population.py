@@ -390,7 +390,7 @@ def displayData(startYear, endYear, animal):
     returnhome = input(""" 
 Press any key to return to menu. """) #restricts the menu from popping up immedietly
 
-### --- MAIN PROGRAM --- ###
+### --- MAIN PROGRAM --- ##
 
 if __name__ == "__main__":
    intro() # intro
