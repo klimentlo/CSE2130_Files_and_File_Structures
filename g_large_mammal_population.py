@@ -165,7 +165,7 @@ def getAnimal2(): # this is used purely for the add new info
     '''
     animal = input("Bison(1), Elk(2), Moose(3), Deer(4) ")
     try:
-        animal = int(animal) 
+        animal = int(animal)
         if animal > 0 and animal < 5:
             if animal == 1:
                 animal = "Bison"
@@ -179,7 +179,7 @@ def getAnimal2(): # this is used purely for the add new info
         else:
             print("That is not a valid number! ")
             return getAnimal2()
-    except TypeError:
+    except:
         print("Please input a number! ")
         return getAnimal2()
 
@@ -375,10 +375,10 @@ def displayData(startYear, endYear, animal):
     :return:
     '''
     global dataContent
-    display = [["Area of park","Population year","Survey Year","Survey Month","Survey Day","Species name","Unknown age and sex count","Adult male count","Adult female count","Adult unknown count","Yearling count","Calf count","Survey total","Sightability correction factor","Additional captive count","Animals removed prior to survey"",Fall population estimate","Survey comment","Estimate method"]]
+    display = []
     startYear = str(startYear) # make sure its a string
     endYear = str(endYear) # make sure its a string
-
+    display.append(dataContent[0])
     for i in range(len(dataContent)):
         if animal == dataContent[i][5]: # if the animal and the animal the user inputted match
             if dataContent[i][1] >= startYear and dataContent[i][1] <= endYear: # if they are within the start and end year
@@ -414,11 +414,9 @@ if __name__ == "__main__":
             updatedData = addData() # calculate all of that stuff
             writeFile(updatedData) # update the file with the new information
        elif choice == 3: # if they want to display specific information
+           animal = getAnimal2()  # get the animal (the straight up string)
            startYear = getStartYear() # get the start year
            endYear = getEndYear(startYear) # get the end year
-           animal = getAnimal2() # get the animal (the straight up string)
            displayData(startYear, endYear, animal) # displays it out nicely
        elif choice == 4: # if they want to exit
            exit() #exit
-
-
